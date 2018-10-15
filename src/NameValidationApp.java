@@ -7,89 +7,116 @@ public class NameValidationApp {
 		Scanner userInput = new Scanner(System.in);
 
 		System.out.println("Please enter a valid Name: ");
-		validateName(userInput);
+		String userName = userInput.nextLine();
+		if (validateName(userName)) {
+			System.out.println("Name is Valid.");
+		} else {
+			System.out.println("Sorry, name is not valid");
+		}
+
+		System.out.println();
 
 		System.out.println("Please enter a valid email: ");
-		validateEmail(userInput);
+		String userEmail = userInput.nextLine();
+		if (validateEmail(userEmail)) {
+			System.out.println("Email is Valid.");
+		} else {
+			System.out.println("Sorry, email is not valid");
+		}
+
+		System.out.println();
 
 		System.out.println("Please enter a valid phone number: ");
-		validatePhone(userInput);
+		String userPhone = userInput.nextLine();
+		if (validatePhone(userPhone)) {
+			System.out.println("Phone is Valid.");
+		} else {
+			System.out.println("Sorry, phone is not valid");
+		}
+
+		System.out.println();
 
 		System.out.println("Please enter a valid date: ");
-		validateDate(userInput);
+		String userDate = userInput.nextLine();
+		if (validateDate(userDate)) {
+			System.out.println("Date is Valid.");
+		} else {
+			System.out.println("Sorry, date is not valid");
+		}
+
+		System.out.println();
 
 		System.out.println("Please enter html elements");
-		validateHTML(userInput);
-
-		System.out.println("Thank you goodbye.");
+		String userHTML = userInput.nextLine();
+		if (validateHTML(userHTML)) {
+			System.out.println("Element tag is Valid.");
+		} else {
+			System.out.println("Sorry, element tags are not valid");
+		}
 
 		userInput.close();
 
 	}
 
 	/**
-	 * @param userInput
+	 * @param userHTML
 	 */
-	private static void validateHTML(Scanner userInput) {
-		String userHTML = userInput.nextLine();
-		// validation
-		while (!userHTML.matches("[<a-z>]+ [<\\a-z>]+")) {
-			System.out.println("Sorry, element is not valid! Try again: ");
-			userHTML = userInput.nextLine();
+	private static boolean validateHTML(String userHTML) {
+
+		if (userHTML.matches("<[a-z]><(/)[a-z]>")) {
+			return true;
+		} else {
+			return false;
 		}
 	}
 
 	/**
-	 * @param userInput
+	 * @param userDATE
 	 */
-	private static void validateDate(Scanner userInput) {
-		String userDate = userInput.nextLine();
-		// validation
-		while (!userDate.matches("[0-9]{2}(/)[0-9]{2}(/)([0-9]{4})")) {
-			System.out.println("Sorry, date is not valid! Try again: ");
-			userDate = userInput.nextLine();
+	private static boolean validateDate(String userDate) {
+
+		if (userDate.matches("\\d{2}/\\d{2}/\\d{4}")) {
+			return true;
+		} else {
+			return false;
 		}
 	}
 
 	/**
-	 * @param userInput
+	 * @param userPhone
 	 */
-	private static void validatePhone(Scanner userInput) {
-		String userPhone;
-		userPhone = userInput.nextLine();
+	private static boolean validatePhone(String userPhone) {
 
-		while (!userPhone.matches("(?:\\d{3}-){2}\\d{4}")) {
-			System.out.println("Sorry, phone number is not valid! Try again: ");
-			userPhone = userInput.nextLine();
+		if (userPhone.matches("(\\d{3}-){2}\\d{4}")) {
+			return true;
+		} else {
+			return false;
 		}
 	}
 
 	/**
-	 * @param userInput
+	 * @param userEmail
 	 */
-	private static void validateEmail(Scanner userInput) {
-		String userEmail;
-		userEmail = userInput.nextLine();
-		// validation
+	private static boolean validateEmail(String userEmail) {
 
-		while ((!userEmail.matches("[a-zA-Z0-9]{5,30}+@[a-zA-Z0-9]{5,10}+\\.[a-zA-Z0-9]{2,3}$")
-				|| (userEmail.length() < 5 || userEmail.length() > 30))) {
-			System.out.println("Sorry, email is not valid! Try again: ");
-			userEmail = userInput.nextLine();
+		if (userEmail.matches("\\w{5,30}@\\w{5,10}.\\w{2,3}")) {
+			return true;
+		} else {
+			return false;
 		}
 	}
 
 	/**
-	 * @param userInput
+	 * @param userName
 	 */
-	private static void validateName(Scanner userInput) {
-		String userName;
-		userName = userInput.nextLine();
-		// validation
-		while (!userName.matches("[A-Z][a-z]* [A-Z][a-z]*")) {
-			System.out.println("Sorry, name is not valid! Try again: ");
-			userName = userInput.nextLine();
+	private static boolean validateName(String userName) {
+
+		if (userName.matches("\\w{5,30} \\w{5,30}")) {
+			return true;
+		} else {
+			return false;
 		}
+
 	}
 
 }
